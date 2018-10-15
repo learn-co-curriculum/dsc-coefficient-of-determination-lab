@@ -10,7 +10,7 @@ You will be able to:
 
 * Mathematically calculate R squared using a toy dataset
 
-* Calculate the co-efficient of deteremination (R-squared) for a given regression line
+* Calculate the coefficient of determination (R-squared) for a given regression line
 
 * Interpret the value of R-squared
 
