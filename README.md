@@ -44,7 +44,16 @@ import numpy as np
 
 def sq_err(ys_a, ys_b):
         
-    pass
+    squarred_error = 0
+    for x in range(0, len(ys_a)):
+        squarred_error += (ys_a[x] - ys_b[x]) ** 2
+    return squarred_error
+
+# Check the output with some toy data
+Y_a = np.array([1,3,5,7])
+Y_b = np.array([1,4,5,8])
+
+sq_err(Y_a, Y_b)
 
 # Check the output with some toy data
 Y_a = np.array([1,3,5,7])
@@ -54,6 +63,13 @@ sq_err(Y_a, Y_b)
 
 # 2
 ```
+
+
+
+
+    2
+
+
 
 Squared error, as calculated above is only a part of the coefficient of determination, Let's now build a function that would use `sq_err()` function above to calculate the value of r-squared by first calculating SSE and SST (SSres and SStot above) and then plugging these values into the R-squared formula. Perform following tasks
 * Calculate the mean of ys_real
@@ -68,7 +84,13 @@ Squared error, as calculated above is only a part of the coefficient of determin
 
 def r_squared(ys_real, ys_predicted):
     
-    pass
+    # calculate the numerator
+    num = sq_err(ys_real, ys_predicted)
+    # calculate the denominator
+    denom = 0
+    for x in ys_real:
+        denom += (x - ys_real.mean()) ** 2
+    return 1 - (num / denom)
 
 # Check the output with some toy data
 Y_real = np.array([1,3,5,7])
@@ -78,6 +100,13 @@ r_squared(Y_real, Y_pred)
 
 # 0.35
 ```
+
+
+
+
+    0.35
+
+
 
 A very low value , but it was not from some real data. So now we have quite a few functions for calculating slope, intercept, bestfit line, plotting and calculating R-squared. In the next lab we'll put these all together to run a complete regression experiment.
 
