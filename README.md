@@ -8,7 +8,7 @@ In the previous lesson we looked at the Coefficient of Determination, what it me
 
 You will be able to:
 
-* Mathematically alculate R-Squared using a toy dataset
+* Mathematically calculate R-Squared using a toy dataset
 
 * Calculate the coefficient of determination (R-Squared) for a given regression line
 
