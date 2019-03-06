@@ -2,17 +2,17 @@
 # Coefficient of Determination - Lab
 
 ## Introduction
-In the previous lesson we looked at the coefficient of determination, what it means and how it is calculated. In this lesson, we shall use the R-squared formula to calculate it in python and numpy. 
+In the previous lesson we looked at the Coefficient of Determination, what it means and how it is calculated. In this lesson, we shall use the R-Squared formula to calculate it in python and numpy. 
 
 ## Objectives
 
 You will be able to:
 
-* Mathematically calculate R squared using a toy dataset
+* Mathematically alculate R-Squared using a toy dataset
 
-* Calculate the coefficient of determination (R-squared) for a given regression line
+* Calculate the coefficient of determination (R-Squared) for a given regression line
 
-* Interpret the value of R-squared
+* Interpret the value of R-Squared
 
 
 ## Let's get started
