@@ -110,5 +110,7 @@ r_squared(Y_real, Y_pred)
 
 A very low value , but it was not from some real data. So now we have quite a few functions for calculating slope, intercept, bestfit line, plotting and calculating R-squared. In the next lab we'll put these all together to run a complete regression experiment.
 
+
+
 ## Summary
 In this lesson we saw how to calculate the R-squared value in python and numpy. Following lab will require you put all the functions from last few labs together to create a complete DIY regression experiment. 
