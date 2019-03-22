@@ -2,7 +2,7 @@
 # Coefficient of Determination - Lab
 
 ## Introduction
-In the previous lesson we looked at the Coefficient of Determination, what it means and how it is calculated. In this lesson, we shall use the R-Squared formula to calculate it in python and numpy. 
+In the previous lesson, we looked at the Coefficient of Determination, what it means and how it is calculated. In this lesson, we shall use the R-Squared formula to calculate it in python and numpy. 
 
 ## Objectives
 
@@ -20,7 +20,7 @@ You will be able to:
 Once a regression model is created, we need to decide how "accurate" the regression line is to some degree. 
 
 
-Here is the the equation for R-Squared or the Coefficient of Determination again: 
+Here is the equation for R-Squared or the Coefficient of Determination again: 
 
 $$ R^2 = 1- \dfrac{SS_{RES}}{SS_{TOT}} = \dfrac{\sum_i(y_i - \hat y_i)^2}{\sum_i(y_i - \overline y_i)^2} $$
  
@@ -67,11 +67,11 @@ sq_err(Y_a, Y_b)
 # 2
 ```
 
-Squared error, as calculated above is only a part of the coefficient of determination, Let's now build a function that uses `sq_err()` function above to calculate the value of R-Squared by first calculating SSE, then use this same function to calculate SST (use the mean of $y$ instead of the regression line), and then plug in these values into the R-Squared formula. Perform following tasks
-* Calculate the mean of the `y_real`.
+Squared error, as calculated above is only a part of the coefficient of determination, Let's now build a function that uses `sq_err()` function above to calculate the value of R-Squared by first calculating SSE, then use this same function to calculate SST (use the mean of $y$ instead of the regression line), and then plug in these values into the R-Squared formula. Perform the following tasks
+* Calculate the mean of the `y_real`
 * Calculate SSE using `sq_err()`
 * Calculate SST using `sq_err()`
-* Calculate R-Squared from above values using given formula. 
+* Calculate R-Squared from above values using the given formula
 
 
 
@@ -101,4 +101,4 @@ r_squared(Y, Y_pred)
 This R-Squared value is very low, but remember that it wasn't from real data. So now, we have quite a few functions for calculating slope, intercept, best-fit line, plotting and calculating R-squared. In the next lab, you'll put these all together to run a complete regression experiment.
 
 ## Summary
-In this lesson you learned how to calculate the R-Squared value in python and numpy. In the next lab, you will put all the functions from last few labs together to create a complete DIY regression experiment. 
+In this lesson, you learned how to calculate the R-Squared value in python and numpy. In the next lab, you will put all the functions from the last few labs together to create a complete DIY regression experiment. 
