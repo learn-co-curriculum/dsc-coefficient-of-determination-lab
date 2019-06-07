@@ -22,7 +22,7 @@ Once a regression model is created, we need to decide how "accurate" the regress
 
 Here is the the equation for R-Squared or the Coefficient of Determination again: 
 
-$$ R^2 = 1- \dfrac{SS_{RES}}{SS_{TOT}} = \dfrac{\sum_i(y_i - \hat y_i)^2}{\sum_i(y_i - \overline y_i)^2} $$
+$$ R^2 = 1- \dfrac{SS_{RES}}{SS_{TOT}} = 1-\dfrac{\sum_i(y_i - \hat y_i)^2}{\sum_i(y_i - \overline y_i)^2} $$
  
  Note that this is also equal to:
 
