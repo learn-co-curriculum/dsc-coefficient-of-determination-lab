@@ -46,7 +46,7 @@ Create a function `sq_err()` that takes in y points for 2 arrays, calculates the
 # Calculate sum of squared errors between regression and mean line 
 import numpy as np
 
-def sq_err(y_a, y_b):
+def sq_err(Y, Y_pred):
     """
     input
     y_a : true y values
@@ -58,19 +58,49 @@ def sq_err(y_a, y_b):
     """
     pass
 
-# Check the output with some toy data
-Y_a = np.array([1,3,5,7])
-Y_b = np.array([1,4,5,8])
+# Check the output with some example data
+Y = np.array([1,3,5,7])
+Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
 
-sq_err(Y_a, Y_b)
+sq_err(Y, Y_pred)
 
-# 2
+# 13.55
 ```
+
+
+```python
+# __SOLUTION__ 
+# Calculate sum of squared errors between regression and mean line 
+import numpy as np
+
+def sq_err(Y, Y_pred):
+        
+    squarred_error = 0
+    for x in range(0, len(Y)):
+        squarred_error += (Y[x] - Y_pred[x]) ** 2
+    return squarred_error
+
+# Check the output with some example data
+Y = np.array([1,3,5,7])
+Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
+
+
+sq_err(Y, Y_pred)
+
+# 13.55
+```
+
+
+
+
+    13.546666666666667
+
+
 
 Squared error, as calculated above is only a part of the coefficient of determination, Let's now build a function that uses `sq_err()` function above to calculate the value of R-Squared by first calculating SSE, then use this same function to calculate SST (use the mean of $y$ instead of the regression line), and then plug in these values into the R-Squared formula. Perform the following tasks
 * Calculate the mean of the `y_real`
-* Calculate SSE using `sq_err()`
-* Calculate SST using `sq_err()`
+* Calculate SSR using `sq_err()` or SSE 
+* Calculate SST 
 * Calculate R-Squared from above values using the given formula
 
 
@@ -89,14 +119,47 @@ def r_squared(y_real, y_predicted):
     """
     pass
 
-# Check the output with some toy data
+# Check the output with some example data
 Y = np.array([1,3,5,7])
-Y_pred = np.array([1,5,5,10])
+Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
 
 r_squared(Y, Y_pred)
 
-# 0.35
+# 0.32
 ```
+
+
+```python
+# __SOLUTION__ 
+# Calculate Y_mean , squared error for regression and mean line , and calculate r-squared
+
+def r_squared(y_real, y_predicted):
+    
+    # calculate the numerator
+    num = sq_err(y_real, y_predicted)
+    # calculate the denominator
+    denom = 0
+    for x in y_real:
+        denom += (x - y_real.mean()) ** 2
+        
+    return 1 - (num / denom)
+
+# Check the output with some example data
+Y = np.array([1,3,5,7])
+Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
+
+
+r_squared(Y, Y_pred)
+
+# 0.32
+```
+
+
+
+
+    0.32266666666666666
+
+
 
 This R-Squared value is very low, but remember that it wasn't from real data. So now, we have quite a few functions for calculating slope, intercept, best-fit line, plotting and calculating R-squared. In the next lab, you'll put these all together to run a complete regression experiment.
 
