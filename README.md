@@ -154,14 +154,14 @@ r_squared(Y, Y_pred)
 
 ```python
 # __SOLUTION__ 
-# Using SSE instead of SSR
+# Using SSexp / SStot
 
 def r_squared2(y_real, y_predicted):
     
-    sse = np.sum((y_predicted - y_real.mean())**2)
+    ssexp = np.sum((y_predicted - y_real.mean())**2)
     denom = np.sum((y_real - y_real.mean())**2)
     
-    return sse / denom
+    return ssexp / denom
 
 # Check the output with some example data
 Y = np.array([1,3,5,7])
