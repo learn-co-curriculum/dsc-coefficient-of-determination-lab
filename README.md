@@ -1,4 +1,3 @@
-
 # Coefficient of Determination - Lab
 
 ## Introduction
@@ -27,33 +26,42 @@ $$ R^2 = 1- \dfrac{SS_{RES}}{SS_{TOT}}=\dfrac{SS_{EXP}}{SS_{TOT}} $$
 where
 
 - $SS_{TOT} = \sum_i(y_i - \overline y_i)^2$ $\rightarrow$ Total Sum of Squares  
--  $SS_{EXP} = \sum_i(\hat y_i - \overline y_i)^2$ $\rightarrow$  Explained Sum of Squares
+- $SS_{EXP} = \sum_i(\hat y_i - \overline y_i)^2$ $\rightarrow$  Explained Sum of Squares
 - $SS_{RES}= \sum_i(y_i - \hat y_i)^2 $ $\rightarrow$ Residual Sum of Squares
 
 Recall that the objective of $R^2$ is to learn how much of the error is a result in variation in the data features, as opposed to being a result of the regression line being a poor fit.
 
 ## Programming R-Squared
 
-Let's calculate R-Squared in Python. The first step would be to calculate the Squared Error. Remember that the Squared Error is the Residual Sum of Squares of the difference between a given line and the actual data points.
+Let's calculate R-Squared in Python. We'll use these y variables:
 
-Create a function `sq_err()` that takes in y points for 2 arrays, calculates the difference between corresponding elements of these arrays, squares the differences, and sums all the squared differences. The function should return the RSS value you saw earlier.
+* `Y` represents the actual values, i.e. $y$
+* `Y_pred` represents the model's predictions, i.e. $\hat{y}$
+
+Note that we do not actually need to have a regression equation or x values to calculate R-Squared!
+
+We'll break down the problem of calculating R-Squared into two steps:
+
+1. A function `sq_error` that calculates the sum of squared error between any two arrays of y values
+2. A function `r_squared` that uses `sq_error` to calculate the R-Squared value
+
+### Calculating Squared Error
+
+The first step is be to calculate the sum of squared error. Remember that the sum of squared error is the sum of the squared differences between two sets of values.
+
+Create a function `sq_err()` that takes in y points for 2 arrays, calculates the difference between corresponding elements of these arrays, squares the differences, and sums all the squared differences.
 
 
 ```python
-# Calculate sum of squared errors between regression and mean line 
-import numpy as np
+# Calculate sum of squared errors between two sets of y values
 
-def sq_err(y_real, y_predicted):
-    squarred_error = np.sum((y_real - y_predicted)**2)
-    return squarred_error
+def sq_err(y_1, y_2):
+    differences = (y_1 - y_2)
+    differences_squared = differences ** 2
+    sum_of_squared_differences = differences_squared.sum()
+    return sum_of_squared_differences
 
-# Check the output with some example data
-Y = np.array([1, 3, 5, 7])
-Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
-
-sq_err(Y, Y_pred)
-
-# 13.55
+sq_err(Y, Y_pred) # should return about 13.55
 ```
 
 
@@ -63,61 +71,32 @@ sq_err(Y, Y_pred)
 
 
 
-Squared error, as calculated above is only a part of the coefficient of determination. Let's now build a function that uses the `sq_err()` function above to calculate the value of R-Squared by first calculating SSE, then use this same function to calculate SST (use the mean of $y$ instead of the regression line), and then plug in these values into the R-Squared formula. Perform the following tasks
-* Calculate the mean of the `y_real`
-* Calculate SSR using `sq_err()` or SSE 
-* Calculate SST 
-* Calculate R-Squared from above values using the given formula
+### Calculating R-Squared
 
+Squared error, as calculated above is only a part of the coefficient of determination. Let's now build a function that uses the `sq_err` function above to calculate the value of R-Squared.
+
+Remember, R-Squared is the explained sum of squares divided by the total sum of squares.
+
+* Create a variable `y_mean` that represents the mean for each value of y
+* Calculate ESS (i.e. $SS_{EXP}$) by passing `y_predicted` and `y_mean` into the `sq_err` function
+* Calculate TSS (i.e. $SS_{TOT}$) by passing `y_real` and `y_mean` into the `sq_err` function
+* Calculate R-Squared by dividing ESS by TSS
 
 
 ```python
-# Calculate Y_mean , squared error for regression and mean line , and calculate r-squared
 
 def r_squared(y_real, y_predicted):
+    # calculate the mean
+    y_mean = np.array([y_real.mean() for y in y_real])
     
     # calculate the numerator
-    num = sq_err(y_real, y_predicted)
+    ess = sq_err(y_predicted, y_mean)
     # calculate the denominator
-    denom = np.sum((y_real - y_real.mean())**2)
+    tss = sq_err(y_real, y_mean)
     
-    return 1 - num/denom
+    return ess/tss
 
-# Check the output with some example data
-Y = np.array([1, 3, 5, 7])
-Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
-
-r_squared(Y, Y_pred)
-
-# 0.32
-```
-
-
-
-
-    0.32266666666666666
-
-
-
-
-```python
-# Using SSexp / SStot
-
-def r_squared2(y_real, y_predicted):
-    
-    ssexp = np.sum((y_predicted - y_real.mean())**2)
-    denom = np.sum((y_real - y_real.mean())**2)
-    
-    return ssexp / denom
-
-# Check the output with some example data
-Y = np.array([1,3,5,7])
-Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
-
-
-r_squared2(Y, Y_pred)
-
-# 0.32
+r_squared(Y, Y_pred) # should return about 0.32
 ```
 
 
@@ -127,7 +106,16 @@ r_squared2(Y, Y_pred)
 
 
 
-This R-Squared value is very low, but remember that it wasn't from real data. So now, we have quite a few functions for calculating slope, intercept, best-fit line, plotting and calculating R-squared. In the next lab, you'll put these all together to run a complete regression experiment.
+What does this R-Squared mean?
+
+---
+
+<details>
+    <summary style="cursor: pointer"><b>Answer (click to reveal)</b></summary>
+
+The model that produced `Y_pred` is explaining about 32.3% of the variance in `Y`. It depends on what these values represent, whether this R-Squared is good enough for our use case.
+
+</details>
 
 ## Summary
-In this lesson, you learned how to calculate the R-Squared using Python and NumPy. In the next lab, you will put all the functions from the last few labs together to create a complete DIY regression experiment. 
+In this lesson, you learned how to calculate the R-Squared using Python and NumPy. You also interpreted the result in terms of explained variance. Later on you'll learn how to use StatsModels to compute the R-Squared for you!
