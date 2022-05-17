@@ -55,7 +55,7 @@ We'll break down the problem of calculating R-Squared into two steps:
 
 ### Calculating Squared Error
 
-The first step is be to calculate the sum of squared error. Remember that the sum of squared error is the sum of the squared differences between two sets of values.
+The first step is to calculate the sum of squared error. Remember that the sum of squared error is the sum of the squared differences between two sets of values.
 
 Create a function `sq_err()` that takes in y points for 2 arrays, calculates the difference between corresponding elements of these arrays, squares the differences, and sums all the squared differences.
 
@@ -113,4 +113,4 @@ The model that produced `Y_pred` is explaining about 32.3% of the variance in `Y
 ```
 
 ## Summary
-In this lesson, you learned how to calculate the R-Squared using Python and NumPy. You also interpreted the result in terms of explained variance. Later on you'll learn how to use StatsModels to compute the R-Squared for you!
+In this lesson, you learned how to calculate R-Squared using Python and NumPy. You also interpreted the result in terms of explained variance. Later on you'll learn how to use StatsModels to compute R-Squared for you!
