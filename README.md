@@ -35,6 +35,14 @@ Recall that the objective of $R^2$ is to learn how much of the error is a result
 
 Let's calculate R-Squared in Python. We'll use these y variables:
 
+
+```python
+import numpy as np
+
+Y = np.array([1, 3, 5, 7])
+Y_pred = np.array([4.1466666666666665, 2.386666666666667, 3.56, 5.906666666666666])
+```
+
 * `Y` represents the actual values, i.e. $y$
 * `Y_pred` represents the model's predictions, i.e. $\hat{y}$
 
